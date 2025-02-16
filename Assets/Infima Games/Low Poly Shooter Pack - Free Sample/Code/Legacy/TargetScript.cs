@@ -35,16 +35,7 @@ public class TargetScript : MonoBehaviour {
 		{
 			if (routineStarted == false) 
 			{
-				//Animate the target "down"
-				gameObject.GetComponent<Animation>().clip = targetDown;
-				gameObject.GetComponent<Animation>().Play();
-
-				//Set the downSound as current sound, and play it
-				audioSource.GetComponent<AudioSource>().clip = downSound;
-				audioSource.Play();
-
-				//Start the timer
-				StartCoroutine(DelayTimer());
+				GetComponent<Rigidbody>().AddExplosionForce(5, transform.position,5,5);
 				routineStarted = true;
 			} 
 		}
