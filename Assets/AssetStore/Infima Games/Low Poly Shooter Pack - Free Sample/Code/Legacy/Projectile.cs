@@ -115,7 +115,11 @@ public class Projectile : MonoBehaviour {
 		{
 			//Toggle "isHit" on target object
 			collision.transform.gameObject.GetComponent
-				<TargetScript>().isHit = true;
+				<Health>().TakeDamage(10);
+			
+			Instantiate (bloodImpactPrefabs [Random.Range 
+					(0, bloodImpactPrefabs.Length)], transform.position, 
+				Quaternion.LookRotation (collision.contacts [0].normal));
 			//Destroy bullet object
 			Destroy(gameObject);
 		}
