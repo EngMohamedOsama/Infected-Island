@@ -38,6 +38,7 @@ public class EnemyAi : MonoBehaviour
        m_Agent.velocity = Vector3.zero;
        m_Animator.SetTrigger("die");
        m_Agent.enabled = false;
+       GameManager.Instance.UpdateQuestProgress();
     }
 
     private void Update()
@@ -77,11 +78,5 @@ public class EnemyAi : MonoBehaviour
        {
             health.TakeDamage(attackDamage);
        }
-    }
-    
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, detectionRange);
     }
 }

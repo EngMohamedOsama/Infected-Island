@@ -103,7 +103,7 @@ namespace InfimaGames.LowPolyShooterPack
                 //Performed.
                 case InputActionPhase.Performed:
                     //Increase.
-                    Increase(increment);
+                    //Increase(increment);
                     break;
             }
         }
@@ -119,7 +119,7 @@ namespace InfimaGames.LowPolyShooterPack
                 //Performed.
                 case InputActionPhase.Performed:
                     //Increase.
-                    Increase(-increment);
+                   // Increase(-increment);
                     break;
             }
         }
@@ -135,7 +135,7 @@ namespace InfimaGames.LowPolyShooterPack
                 //Performed.
                 case InputActionPhase.Performed:
                     //Toggle.
-                    Toggle();
+                    //Toggle();
                     break;
             }      
         }

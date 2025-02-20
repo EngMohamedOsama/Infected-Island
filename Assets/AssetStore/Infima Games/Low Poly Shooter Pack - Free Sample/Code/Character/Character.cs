@@ -676,6 +676,7 @@ namespace InfimaGames.LowPolyShooterPack
 		/// </summary>
 		public void OnTryHolster(InputAction.CallbackContext context)
 		{
+			return;
 			//Block while the cursor is unlocked.
 			if (!cursorLocked)
 				return;
@@ -801,6 +802,12 @@ namespace InfimaGames.LowPolyShooterPack
 				//Default.
 				_ => tutorialTextVisible
 			};
+		}
+
+		public void UnlockCursor()
+		{
+			cursorLocked = false;
+			UpdateCursorState();
 		}
 
 		#endregion
