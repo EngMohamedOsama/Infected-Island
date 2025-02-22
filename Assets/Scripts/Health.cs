@@ -7,7 +7,7 @@ public class Health : MonoBehaviour
     private int m_CurrentHealth;
 
     public Action OnDeath;
-    public Action<int> OnTakeDamage;
+    internal bool IsInvincible;
     
     private void Start()
     {
@@ -16,9 +16,8 @@ public class Health : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        if(m_CurrentHealth <= 0) return;
+        if(m_CurrentHealth <= 0 || IsInvincible) return;
         m_CurrentHealth = Mathf.Clamp(m_CurrentHealth - damage, 0, maxHealth);
-        OnTakeDamage?.Invoke(m_CurrentHealth);
         if (m_CurrentHealth > 0) return;
         Die();
     }

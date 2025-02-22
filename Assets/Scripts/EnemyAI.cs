@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -16,29 +17,43 @@ public class EnemyAi : MonoBehaviour
     private Health m_Health;
     private bool m_IsDead;
 
+    private bool m_ZoombieEventStarted;
     private void Start()
     {
         m_Health = GetComponent<Health>();
         m_Agent = GetComponent<NavMeshAgent>();
         m_Animator = GetComponentInChildren<Animator>();
-        m_Agent.speed = moveSpeed;
         m_Player = GameObject.FindGameObjectWithTag("Player").transform;
 
         m_Health.OnDeath += OnDeath;
+        GameManager.Instance.OnZoombieEvent += ZoombieEventStart;
+        
+        m_Agent.speed = moveSpeed;
+    }
+
+    private void ZoombieEventEnd()
+    {
+        throw new NotImplementedException();
+    }
+
+    private void ZoombieEventStart(bool state)
+    {
+        m_Health.IsInvincible = state;
+        m_ZoombieEventStarted = state;
     }
 
     private void OnDeath()
-    {
+    { 
         m_IsDead = true;
-       m_Animator.Rebind();
-       GetComponent<Collider>().isTrigger = true;
-       m_Agent.isStopped = true;
-       m_Agent.updatePosition = false;
-       m_Agent.updateRotation = false;
-       m_Agent.velocity = Vector3.zero;
-       m_Animator.SetTrigger("die");
-       m_Agent.enabled = false;
-       GameManager.Instance.UpdateQuestProgress();
+        m_Animator.Rebind();
+        GetComponent<Collider>().isTrigger = true;
+        m_Agent.isStopped = true;
+        m_Agent.updatePosition = false;
+        m_Agent.updateRotation = false;
+        m_Agent.velocity = Vector3.zero;
+        m_Animator.SetTrigger("die");
+        m_Agent.enabled = false;
+        GameManager.Instance.UpdateQuestProgress();
     }
 
     private void Update()
@@ -51,7 +66,7 @@ public class EnemyAi : MonoBehaviour
         
         float distanceToPlayer = Vector3.Distance(transform.position, m_Player.position);
 
-        if (distanceToPlayer <= detectionRange)
+        if (distanceToPlayer <= detectionRange || m_ZoombieEventStarted)
         {
             m_Agent.SetDestination(m_Player.position);
             m_Agent.isStopped = false;
@@ -78,5 +93,12 @@ public class EnemyAi : MonoBehaviour
        {
             health.TakeDamage(attackDamage);
        }
+    }
+
+    private void OnDestroy()
+    {
+        m_Health.OnDeath -= OnDeath;
+        GameManager.Instance.OnZoombieEvent -= ZoombieEventStart;
+
     }
 }
