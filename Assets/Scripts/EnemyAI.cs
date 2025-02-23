@@ -7,8 +7,6 @@ public class EnemyAi : MonoBehaviour
     public float moveSpeed = 3.5f;
     public float attackRange = 2f;
     public float attackCooldown = 1.5f;
-    public int attackDamage = 10;
-    public float detectionRange = 15f;
 
     private NavMeshAgent m_Agent;
     private float m_AttackTimer;
@@ -29,11 +27,6 @@ public class EnemyAi : MonoBehaviour
         GameManager.Instance.OnZoombieEvent += ZoombieEventStart;
         
         m_Agent.speed = moveSpeed;
-    }
-
-    private void ZoombieEventEnd()
-    {
-        throw new NotImplementedException();
     }
 
     private void ZoombieEventStart(bool state)
@@ -66,7 +59,7 @@ public class EnemyAi : MonoBehaviour
         
         float distanceToPlayer = Vector3.Distance(transform.position, m_Player.position);
 
-        if (distanceToPlayer <= detectionRange || m_ZoombieEventStarted)
+        if (distanceToPlayer <= 7f || m_ZoombieEventStarted)
         {
             m_Agent.SetDestination(m_Player.position);
             m_Agent.isStopped = false;
@@ -91,7 +84,7 @@ public class EnemyAi : MonoBehaviour
         Health health = m_Player.GetComponent<Health>();
        if (health != null)
        {
-            health.TakeDamage(attackDamage);
+            health.TakeDamage(10);
        }
     }
 

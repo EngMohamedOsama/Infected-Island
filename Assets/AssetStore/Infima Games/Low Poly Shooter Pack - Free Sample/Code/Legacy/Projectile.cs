@@ -115,7 +115,7 @@ public class Projectile : MonoBehaviour {
 		{
 			//Toggle "isHit" on target object
 			collision.transform.gameObject.GetComponent
-				<Health>().TakeDamage(100);
+				<Health>().TakeDamage(40);
 			
 			Instantiate (bloodImpactPrefabs [Random.Range 
 					(0, bloodImpactPrefabs.Length)], transform.position, 

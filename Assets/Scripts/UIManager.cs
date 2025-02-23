@@ -1,6 +1,8 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 public class UIManager : Singleton<UIManager>
 {
@@ -13,7 +15,10 @@ public class UIManager : Singleton<UIManager>
     [SerializeField]
     private TMP_Text m_questText;
 
-    [SerializeField] private GameObject m_GameFinished;
+    [SerializeField] private Image healthBar;
+    [SerializeField] private Animator damagePanel;
+
+    [FormerlySerializedAs("m_GameFinished")] [SerializeField] private TMP_Text m_GameFinishedText;
     public void UpdateQuestText(int totalQuests)
     {
         m_questText.text = $"YOUR QUEST:-\nKILL ALL ZOOMBIES: {totalQuests}";
@@ -26,7 +31,15 @@ public class UIManager : Singleton<UIManager>
 
     public void GameFinished()
     {
-        m_GameFinished.SetActive(true);
+        m_GameFinishedText.transform.parent.gameObject.SetActive(true);
+        ShowQuest(false);
+    }
+
+    public void GameFailed()
+    {
+        m_GameFinishedText.text = "MISSION FAILED!";
+        m_GameFinishedText.color = Color.red;
+        m_GameFinishedText.transform.parent.gameObject.SetActive(true);
         ShowQuest(false);
     }
 
@@ -49,7 +62,14 @@ public class UIManager : Singleton<UIManager>
     {
         m_questText.gameObject.transform.parent.gameObject.SetActive(state);
     }
-    
+
+    public void UpdateHealthBar(int currentHealth, int maxHealth)
+    {
+        float healthPercent = (float)currentHealth / (float)maxHealth;
+        healthBar.fillAmount = healthPercent;
+        damagePanel.SetTrigger("damage");
+        damagePanel.GetComponent<AudioSource>().Play();
+    }
     public void QuitGame()
     {
         Application.Quit();

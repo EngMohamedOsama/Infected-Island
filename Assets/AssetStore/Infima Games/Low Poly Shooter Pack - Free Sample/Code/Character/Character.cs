@@ -14,6 +14,8 @@ namespace InfimaGames.LowPolyShooterPack
 	[RequireComponent(typeof(CharacterKinematics))]
 	public sealed class Character : CharacterBehaviour
 	{
+		private Health m_PlayerHealth;
+		
 		#region FIELDS SERIALIZED
 
 		[Header("Inventory")]
@@ -169,6 +171,10 @@ namespace InfimaGames.LowPolyShooterPack
 
 		protected override void Awake()
 		{
+			m_PlayerHealth = GetComponent<Health>();
+			m_PlayerHealth.OnDeath += OnPlayerDeath;
+			m_PlayerHealth.OnTakeDamage += OnTakeDamage;
+			
 			#region Lock Cursor
 
 			//Always make sure that our cursor is locked when the game starts!
@@ -187,6 +193,19 @@ namespace InfimaGames.LowPolyShooterPack
 			//Refresh!
 			RefreshWeaponSetup();
 		}
+
+		private void OnTakeDamage(int currentHealth, int maxHealth)
+		{
+			UIManager.Instance.UpdateHealthBar(currentHealth, maxHealth);
+		}
+
+		private void OnPlayerDeath()
+		{
+			GetComponent<Movement>().enabled = false;
+			UnlockCursor();
+			UIManager.Instance.GameFailed();
+		}
+
 		protected override void Start()
 		{
 			//Cache a reference to the holster layer's index.
@@ -853,5 +872,11 @@ namespace InfimaGames.LowPolyShooterPack
 		#endregion
 
 		#endregion
+
+		private void OnDestroy()
+		{
+			m_PlayerHealth.OnDeath -= OnPlayerDeath;
+			m_PlayerHealth.OnTakeDamage -= OnTakeDamage;
+		}
 	}
 }
