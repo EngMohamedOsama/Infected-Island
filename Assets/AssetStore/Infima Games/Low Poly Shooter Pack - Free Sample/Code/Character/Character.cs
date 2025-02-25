@@ -168,9 +168,22 @@ namespace InfimaGames.LowPolyShooterPack
 		#endregion
 
 		#region UNITY
-
-		protected override void Awake()
+		
+		private void OnTakeDamage(int currentHealth, int maxHealth)
 		{
+			UIManager.Instance.UpdateHealthBar(currentHealth, maxHealth);
+		}
+
+		private void OnPlayerDeath()
+		{
+			GetComponent<Movement>().enabled = false;
+			UnlockCursor();
+			UIManager.Instance.GameFailed();
+		}
+
+		protected override void Start()
+		{
+			
 			m_PlayerHealth = GetComponent<Health>();
 			m_PlayerHealth.OnDeath += OnPlayerDeath;
 			m_PlayerHealth.OnTakeDamage += OnTakeDamage;
@@ -192,22 +205,7 @@ namespace InfimaGames.LowPolyShooterPack
 
 			//Refresh!
 			RefreshWeaponSetup();
-		}
-
-		private void OnTakeDamage(int currentHealth, int maxHealth)
-		{
-			UIManager.Instance.UpdateHealthBar(currentHealth, maxHealth);
-		}
-
-		private void OnPlayerDeath()
-		{
-			GetComponent<Movement>().enabled = false;
-			UnlockCursor();
-			UIManager.Instance.GameFailed();
-		}
-
-		protected override void Start()
-		{
+			
 			//Cache a reference to the holster layer's index.
 			layerHolster = characterAnimator.GetLayerIndex("Layer Holster");
 			//Cache a reference to the action layer's index.

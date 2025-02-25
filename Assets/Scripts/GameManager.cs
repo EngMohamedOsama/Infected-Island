@@ -15,16 +15,12 @@ public class GameManager : Singleton<GameManager>
 
     private int m_EventTrigger;
 
-    public Character Character;
-
-    protected override void Awake()
-    {
-        base.Awake();
-        Character = FindAnyObjectByType<Character>();
-    }
+    internal Character Character;
 
     private void Start()
     {
+        GetComponent<AudioSource>().Play();
+        Character = FindAnyObjectByType<Character>();
         m_TotalZoombieCount = FindObjectsByType<EnemyAi>(FindObjectsSortMode.None).Length;
         m_AliveZoombieCount = m_TotalZoombieCount;
         UIManager.Instance.UpdateQuestText(m_AliveZoombieCount);

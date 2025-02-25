@@ -91,7 +91,7 @@ public class EnemyAi : MonoBehaviour
     private void OnDestroy()
     {
         m_Health.OnDeath -= OnDeath;
-        GameManager.Instance.OnZoombieEvent -= ZoombieEventStart;
+       if(GameManager.Instance != null) GameManager.Instance.OnZoombieEvent -= ZoombieEventStart;
 
     }
 }
