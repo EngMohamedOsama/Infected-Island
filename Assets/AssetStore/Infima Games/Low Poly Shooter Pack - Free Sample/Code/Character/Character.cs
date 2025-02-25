@@ -409,8 +409,10 @@ namespace InfimaGames.LowPolyShooterPack
 		{
 			//Update cursor visibility.
 			Cursor.visible = !cursorLocked;
+			//Cursor.visible = true;
 			//Update cursor lock state.
 			Cursor.lockState = cursorLocked ? CursorLockMode.Locked : CursorLockMode.None;
+		//	Cursor.lockState = CursorLockMode.None;
 		}
 
 		/// <summary>
@@ -564,8 +566,8 @@ namespace InfimaGames.LowPolyShooterPack
 				return false;
 
 			//This blocks running backwards, or while fully moving sideways.
-			if (axisMovement.y <= 0 || Math.Abs(Mathf.Abs(axisMovement.x) - 1) < 0.01f)
-				return false;
+		//	if (axisMovement.y <= 0 || Math.Abs(Mathf.Abs(axisMovement.x) - 1) < 0.01f)
+			//	return false;
 			
 			//Return.
 			return true;
@@ -580,6 +582,7 @@ namespace InfimaGames.LowPolyShooterPack
 		/// </summary>
 		public void OnTryFire(InputAction.CallbackContext context)
 		{
+			return;
 			//Block while the cursor is unlocked.
 			if (!cursorLocked)
 				return;
@@ -620,14 +623,37 @@ namespace InfimaGames.LowPolyShooterPack
 					break;
 			}
 		}
+		
+		public void OnTryFire(bool state)
+		{
+			holdingButtonFire = state;
+			if (!CanPlayAnimationFire())
+				return;
+					
+			//Check.
+			if (equippedWeapon.HasAmmunition())
+			{
+				//Check.
+				if (equippedWeapon.IsAutomatic())
+					return;
+							
+				//Has fire rate passed.
+				if (Time.time - lastShotTime > 60.0f / equippedWeapon.GetRateOfFire())
+					Fire();
+			}
+			//Fire Empty.
+			else
+				OnTryPlayReload();
+		}
+		
 		/// <summary>
 		/// Reload.
 		/// </summary>
 		public void OnTryPlayReload(InputAction.CallbackContext context)
 		{
 			//Block while the cursor is unlocked.
-			if (!cursorLocked)
-				return;
+			//if (!cursorLocked)
+			//	return;
 			
 			//Block.
 			if (!CanPlayAnimationReload())
@@ -642,6 +668,14 @@ namespace InfimaGames.LowPolyShooterPack
 					PlayReloadAnimation();
 					break;
 			}
+		}
+		
+		public void OnTryPlayReload()
+		{
+			if (!CanPlayAnimationReload())
+				return;
+			
+			PlayReloadAnimation();
 		}
 
 		/// <summary>
@@ -740,6 +774,12 @@ namespace InfimaGames.LowPolyShooterPack
 					break;
 			}
 		}
+		
+		public void OnTryRun(bool state)
+		{
+			holdingButtonRun = state;
+		}
+		
 		/// <summary>
 		/// Next Inventory Weapon.
 		/// </summary>

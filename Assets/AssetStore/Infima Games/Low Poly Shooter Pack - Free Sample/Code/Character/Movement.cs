@@ -138,13 +138,13 @@ namespace InfimaGames.LowPolyShooterPack
             PlayFootstepSounds();
 
             // Rotate the character based on movement direction
-            Vector2 frameInput = playerCharacter.GetInputMovement();
-            Vector3 direction = new Vector3(frameInput.x, 0.0f, frameInput.y);
-            if (direction != Vector3.zero)
-            {
-                //Quaternion targetRotation = Quaternion.LookRotation(direction);
-               // transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 10f);
-            }
+            // Vector2 frameInput = playerCharacter.GetInputMovement();
+            // Vector3 direction = new Vector3(frameInput.x, 0.0f, frameInput.y);
+            // if (direction != Vector3.zero)
+            // {
+            //     //Quaternion targetRotation = Quaternion.LookRotation(direction);
+            //    // transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 10f);
+            // }
         }
 
         #endregion
@@ -156,9 +156,9 @@ namespace InfimaGames.LowPolyShooterPack
             #region Calculate Movement Velocity
 
             //Get Movement Input!
-            Vector2 frameInput = playerCharacter.GetInputMovement();
+            Vector2 frameInput = UIManager.Instance.GetMovementJoystick();   //playerCharacter.GetInputMovement();
             //Calculate local-space direction by using the player's input.
-            var movement = new Vector3(frameInput.x, 0.0f, frameInput.y).normalized;
+            Vector3 movement = new Vector3(frameInput.x, 0.0f, frameInput.y).normalized;
             
             float speed = playerCharacter.IsRunning() ? speedRunning : speedWalking;
 

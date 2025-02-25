@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using InfimaGames.LowPolyShooterPack;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -13,6 +14,14 @@ public class GameManager : Singleton<GameManager>
     public Action<bool> OnZoombieEvent;
 
     private int m_EventTrigger;
+
+    public Character Character;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        Character = FindAnyObjectByType<Character>();
+    }
 
     private void Start()
     {

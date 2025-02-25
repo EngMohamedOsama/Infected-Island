@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -18,7 +19,10 @@ public class UIManager : Singleton<UIManager>
     [SerializeField] private Image healthBar;
     [SerializeField] private Animator damagePanel;
 
-    [FormerlySerializedAs("m_GameFinished")] [SerializeField] private TMP_Text m_GameFinishedText;
+    [SerializeField] private TMP_Text m_GameFinishedText;
+    [SerializeField] private FixedJoystick m_MovementJoystick;
+    [SerializeField] private FixedJoystick m_AimJoystick;
+    
     public void UpdateQuestText(int totalQuests)
     {
         m_questText.text = $"YOUR QUEST:-\nKILL ALL ZOOMBIES: {totalQuests}";
@@ -70,6 +74,32 @@ public class UIManager : Singleton<UIManager>
         damagePanel.SetTrigger("damage");
         damagePanel.GetComponent<AudioSource>().Play();
     }
+
+    public Vector2 GetMovementJoystick()
+    {
+        return new Vector2(m_MovementJoystick.Horizontal, m_MovementJoystick.Vertical);
+    }
+
+    public Vector2 GetAimJoystick()
+    {
+        return new Vector2(m_AimJoystick.Horizontal, m_AimJoystick.Vertical);
+    }
+    
+    public void OnReload()
+    {
+        GameManager.Instance.Character.OnTryPlayReload();
+    }
+
+    public void OnRun(bool state)
+    {
+        GameManager.Instance.Character.OnTryRun(state);
+    }
+    
+    public void OnTryFire(bool state)
+    {
+        GameManager.Instance.Character.OnTryFire(state);
+    }
+    
     public void QuitGame()
     {
         Application.Quit();

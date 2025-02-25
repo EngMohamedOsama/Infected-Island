@@ -1,0 +1,17 @@
+M:\UnityProjects\ShadowsOfTheForgotten\-ShadowsOfTheForgotten\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\GameActivity\GAToUnityCallbacks.h
+M:\UnityProjects\ShadowsOfTheForgotten\-ShadowsOfTheForgotten\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\GameActivity\MacroEnd.h
+M:\UnityProjects\ShadowsOfTheForgotten\-ShadowsOfTheForgotten\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\GameActivity\MacroHeaderBegin.h
+M:\UnityProjects\ShadowsOfTheForgotten\-ShadowsOfTheForgotten\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\GameActivity\MacroSourceBegin.h
+M:\UnityProjects\ShadowsOfTheForgotten\-ShadowsOfTheForgotten\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\GameActivity\UGAApplication.h
+M:\UnityProjects\ShadowsOfTheForgotten\-ShadowsOfTheForgotten\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\GameActivity\UGAConfiguration.h
+M:\UnityProjects\ShadowsOfTheForgotten\-ShadowsOfTheForgotten\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\GameActivity\UGADebug.h
+M:\UnityProjects\ShadowsOfTheForgotten\-ShadowsOfTheForgotten\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\GameActivity\UGAEvents.h
+M:\UnityProjects\ShadowsOfTheForgotten\-ShadowsOfTheForgotten\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\GameActivity\UGAInput.h
+M:\UnityProjects\ShadowsOfTheForgotten\-ShadowsOfTheForgotten\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\GameActivity\UGASoftKeyboard.h
+M:\UnityProjects\ShadowsOfTheForgotten\-ShadowsOfTheForgotten\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\GameActivity\UGASoftKeyboardCallbacks.h
+M:\UnityProjects\ShadowsOfTheForgotten\-ShadowsOfTheForgotten\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\GameActivity\UGATypes.h
+M:\UnityProjects\ShadowsOfTheForgotten\-ShadowsOfTheForgotten\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\GameActivity\UGAVersion.h
+M:\UnityProjects\ShadowsOfTheForgotten\-ShadowsOfTheForgotten\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\GameActivity\UnityToGACallbacks.h
+M:\UnityProjects\ShadowsOfTheForgotten\-ShadowsOfTheForgotten\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\GameActivity\UnityToGAConfigurationCallbacks.h
+M:\UnityProjects\ShadowsOfTheForgotten\-ShadowsOfTheForgotten\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\GameActivity\UnityToGAKeyEventCallbacks.h
+M:\UnityProjects\ShadowsOfTheForgotten\-ShadowsOfTheForgotten\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\GameActivity\UnityToGAMotionEventCallbacks.h

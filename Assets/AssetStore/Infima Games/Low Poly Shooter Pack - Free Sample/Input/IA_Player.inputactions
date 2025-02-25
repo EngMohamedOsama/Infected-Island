@@ -45,7 +45,7 @@
                     "name": "Reload",
                     "type": "Button",
                     "id": "3c4ac825-58e8-487f-8ba7-80b959d2a946",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -232,6 +232,17 @@
                     "name": "",
                     "id": "b85d03ba-6afe-4100-9072-d7bb950e8849",
                     "path": "<Pointer>/delta",
+                    "interactions": "",
+                    "processors": "ScaleVector2(x=0.05,y=0.05)",
+                    "groups": "",
+                    "action": "Look",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6fe1f342-2a61-4be2-baf1-6e2cba074f69",
+                    "path": "<Touchscreen>/touch1/delta",
                     "interactions": "",
                     "processors": "ScaleVector2(x=0.05,y=0.05)",
                     "groups": "",
